@@ -34,6 +34,7 @@ APP_VERSION = "1.0.0"
 GITHUB_REPOSITORY = "grahamlgrove/swift-image-tools"
 LATEST_RELEASE_API = f"https://api.github.com/repos/{GITHUB_REPOSITORY}/releases/latest"
 RELEASES_URL = f"https://github.com/{GITHUB_REPOSITORY}/releases/latest"
+KOFI_URL = "https://ko-fi.com/groveapps"
 SUPPORTED = {
     ".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".tif", ".tiff", ".avif", ".heic", ".heif",
     ".jxl", ".jp2", ".j2k", ".psd", ".exr", ".hdr", ".tga", ".ico", ".pcx", ".ppm", ".pgm", ".pnm",
@@ -839,10 +840,22 @@ class Application:
         )
         ttk.Label(frame, text=description, justify="left").pack(anchor="w")
         ttk.Label(frame, text="Created by Graham Grove", foreground="#555").pack(anchor="w", pady=(14, 0))
+        support_text = (
+            "Grove Swift Image Tools and my other free apps and educational wikis are personal "
+            "hobby projects. I develop and maintain them myself and cover the associated website "
+            "and server costs. If you find them useful, you’re welcome to buy me a coffee and help "
+            "with the running costs.\n\nSupport is entirely optional and does not purchase additional "
+            "features, services or technical support. This is not a registered charity, so "
+            "contributions are not tax deductible."
+        )
+        ttk.Separator(frame).pack(fill="x", pady=(16, 14))
+        ttk.Label(frame, text=support_text, justify="left", wraplength=540).pack(anchor="w")
         buttons = ttk.Frame(frame)
         buttons.pack(fill="x", pady=(18, 0))
         ttk.Button(buttons, text="GitHub project", command=lambda: webbrowser.open(
             f"https://github.com/{GITHUB_REPOSITORY}"),).pack(side="left")
+        ttk.Button(buttons, text="Buy me a coffee", command=lambda: webbrowser.open(
+            KOFI_URL),).pack(side="left", padx=(7, 0))
         ttk.Button(buttons, text="Close", command=window.destroy).pack(side="right")
         window.update_idletasks()
         x = self.root.winfo_rootx() + (self.root.winfo_width() - window.winfo_width()) // 2
