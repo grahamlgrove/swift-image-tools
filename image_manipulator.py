@@ -327,6 +327,7 @@ class Application:
         ttk.Label(title_row, text=APP_NAME, style="Title.TLabel").pack(side="left")
         ttk.Label(title_row, text=f"Version {APP_VERSION}").pack(side="left", padx=(10,0), pady=(7,0))
         ttk.Button(title_row, text="Check for updates", command=self.check_for_updates).pack(side="right")
+        ttk.Button(title_row, text="About", command=self.show_about).pack(side="right", padx=(0, 7))
         ttk.Label(main, text="Quick, simple cropping, resizing and conversion — one image or a whole batch").pack(anchor="w", pady=(0, 12))
         body = ttk.Panedwindow(main, orient="horizontal")
         body.pack(fill="both", expand=True)
@@ -817,6 +818,33 @@ class Application:
         if not silent:
             self.status.set("Checking GitHub for updates…")
         threading.Thread(target=self.update_check_worker, args=(silent,), daemon=True).start()
+
+    def show_about(self):
+        window = tk.Toplevel(self.root)
+        window.title(f"About {APP_NAME}")
+        window.resizable(False, False)
+        window.transient(self.root)
+        frame = ttk.Frame(window, padding=22)
+        frame.pack(fill="both", expand=True)
+        ttk.Label(frame, text=APP_NAME, style="Title.TLabel").pack(anchor="w")
+        ttk.Label(frame, text=f"Version {APP_VERSION}").pack(anchor="w", pady=(2, 12))
+        description = (
+            "A fast, simple tool for cropping, resizing and converting images.\n\n"
+            "Selections are always processed proportionally, so images are never\n"
+            "stretched or squashed. Image conversion is powered by ImageMagick."
+        )
+        ttk.Label(frame, text=description, justify="left").pack(anchor="w")
+        ttk.Label(frame, text="Created by Graham Grove", foreground="#555").pack(anchor="w", pady=(14, 0))
+        buttons = ttk.Frame(frame)
+        buttons.pack(fill="x", pady=(18, 0))
+        ttk.Button(buttons, text="GitHub project", command=lambda: webbrowser.open(
+            f"https://github.com/{GITHUB_REPOSITORY}"),).pack(side="left")
+        ttk.Button(buttons, text="Close", command=window.destroy).pack(side="right")
+        window.update_idletasks()
+        x = self.root.winfo_rootx() + (self.root.winfo_width() - window.winfo_width()) // 2
+        y = self.root.winfo_rooty() + (self.root.winfo_height() - window.winfo_height()) // 2
+        window.geometry(f"+{max(0, x)}+{max(0, y)}")
+        window.grab_set()
 
     def update_check_worker(self, silent):
         try:
