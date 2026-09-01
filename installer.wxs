@@ -28,5 +28,7 @@
     </Feature>
     <Property Id="ARPNOREPAIR" Value="1" />
     <Property Id="ARPURLINFOABOUT" Value="https://github.com/grahamlgrove/swift-image-tools" />
+    <Icon Id="AppIcon" SourceFile="assets\grove-swift-image-tools.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
   </Product>
 </Wix>

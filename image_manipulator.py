@@ -287,6 +287,10 @@ class Application:
     def __init__(self):
         self.root = RootWindow()
         self.root.title(f"{APP_NAME} {APP_VERSION}")
+        icon_path = app_dir() / "assets" / "grove-swift-image-tools.png"
+        if icon_path.exists():
+            self.app_icon = tk.PhotoImage(file=str(icon_path))
+            self.root.iconphoto(True, self.app_icon)
         self.root.geometry("1120x720")
         self.root.minsize(920, 620)
         self.files: list[Path] = []

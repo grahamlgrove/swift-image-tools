@@ -6,6 +6,7 @@ $AppName = "Grove Swift Image Tools"
 $BuildStamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $MagickSource = "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI"
 $MagickBundle = Join-Path $ProjectDir "ImageMagick"
+$Assets = Join-Path $ProjectDir "assets"
 $ReleaseBuild = Join-Path $ProjectDir "ReleaseBuild-$Version-$BuildStamp"
 $AppFolder = Join-Path $ReleaseBuild $AppName
 $Release = Join-Path $ProjectDir "Release"
@@ -20,7 +21,8 @@ if (-not (Test-Path (Join-Path $Wix "candle.exe"))) { throw "WiX 3.14.1 portable
 New-Item -ItemType Directory -Force -Path $ReleaseBuild, $Release | Out-Null
 $env:PYTHONPATH = Join-Path $ProjectDir ".vendor"
 python -m PyInstaller --noconfirm --clean --windowed --name $AppName `
-    --paths ".vendor" --collect-all tkinterdnd2 --add-data "$MagickBundle;ImageMagick" `
+    --paths ".vendor" --collect-all tkinterdnd2 --icon (Join-Path $Assets "grove-swift-image-tools.ico") `
+    --add-data "$MagickBundle;ImageMagick" --add-data "$Assets;assets" `
     --version-file (Join-Path $ProjectDir "version_info.txt") --distpath $ReleaseBuild --workpath "build-release-$Version-$BuildStamp" `
     --specpath "build-release-$Version-$BuildStamp" (Join-Path $ProjectDir "image_manipulator.py")
 if ($LASTEXITCODE -ne 0) { throw "Application packaging failed with exit code $LASTEXITCODE" }
