@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="Grove Swift Image Tools" Language="1033" Version="1.0.0"
+           Manufacturer="Graham Grove" UpgradeCode="EFA021E8-04C1-4DB8-866E-4EB516CA029D">
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Platform="x64" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Grove Swift Image Tools is already installed." />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder"><Directory Id="INSTALLFOLDER" Name="Grove Swift Image Tools" /></Directory>
+      <Directory Id="ProgramMenuFolder" />
+      <Directory Id="DesktopFolder" />
+    </Directory>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="ApplicationRegistration" Guid="*" Win64="yes">
+        <RegistryValue Root="HKLM" Key="Software\Grove Swift Image Tools" Name="InstallType" Type="string" Value="MSI" KeyPath="yes" />
+        <RegistryValue Root="HKLM" Key="Software\Grove Swift Image Tools" Name="Version" Type="string" Value="1.0.0" />
+      </Component>
+      <Component Id="UserShortcuts" Guid="*" Win64="yes">
+        <RegistryValue Root="HKCU" Key="Software\Grove Swift Image Tools" Name="Shortcuts" Type="integer" Value="1" KeyPath="yes" />
+        <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="Grove Swift Image Tools" WorkingDirectory="INSTALLFOLDER" Target="[INSTALLFOLDER]Grove Swift Image Tools.exe" Advertise="no" />
+        <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="Grove Swift Image Tools" WorkingDirectory="INSTALLFOLDER" Target="[INSTALLFOLDER]Grove Swift Image Tools.exe" Advertise="no" />
+      </Component>
+    </DirectoryRef>
+    <Feature Id="ProductFeature" Title="Grove Swift Image Tools" Level="1">
+      <ComponentGroupRef Id="AppFiles" />
+      <ComponentRef Id="ApplicationRegistration" />
+      <ComponentRef Id="UserShortcuts" />
+    </Feature>
+    <Property Id="ARPNOREPAIR" Value="1" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/grahamlgrove/swift-image-tools" />
+  </Product>
+</Wix>

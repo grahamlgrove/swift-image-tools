@@ -1,0 +1,15 @@
+.vendor/
+.tools/
+build/
+build-*/
+dist/
+dist-*/
+ReleaseBuild/
+ReleaseBuild-*/
+Release/
+ImageMagick/
+*.spec
+__pycache__/
+*.wixobj
+app-files.wxs
+installer.iss
