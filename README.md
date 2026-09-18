@@ -55,3 +55,9 @@ The script builds the application, portable ZIP, genuine x64 MSI, and SHA-256 ch
 ## Licence
 
 Grove Swift Image Tools is available under the [MIT License](LICENSE). Bundled components retain their own licences; see [Third-party notices](THIRD_PARTY_NOTICES.md).
+
+## Support
+
+Grove Swift Image Converter is developed and maintained as a personal hobby project. If you find it useful, you’re welcome to [[buy me a coffee](https://ko-fi.com/groveapps)](https://ko-fi.com/groveapps) and help support this and my other free apps and educational wikis.
+
+Support is entirely optional and does not purchase additional features or services. Contributions are not tax deductible.
