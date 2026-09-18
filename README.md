@@ -2,7 +2,7 @@
 
 Fast, simple image cropping, resizing and format conversion.
 
-Version 1.0 currently provides Windows and MacOS downloads.
+Version 1.1 currently provides Windows and MacOS downloads.
 
 ## Downloads
 
